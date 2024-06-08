@@ -1,6 +1,12 @@
 // Deje hasta: 1:00:09
 // https://www.youtube.com/watch?v=7dAt-JMSCVQ&t=189s
 
+
 // Dejé hasta: 2:54:24
 
+
 // Dejé hasta: 6:52:46
+
+
+// Dejé hasta: 8:08:30
+//https://www.youtube.com/watch?v=7dAt-JMSCVQ&list=PL3nPgdhXQtHfgtMpD_0EvJm-8LP3uNfc-&index=1&t=24796s
