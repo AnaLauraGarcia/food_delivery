@@ -10,3 +10,6 @@
 
 // Dejé hasta: 8:08:30
 //https://www.youtube.com/watch?v=7dAt-JMSCVQ&list=PL3nPgdhXQtHfgtMpD_0EvJm-8LP3uNfc-&index=1&t=24796s
+
+// - https://mvs.bslmeiyu.com/api/v1/products/popular
+// - https://mvs.bslmeiyu.com/api/v1/products/recommended
