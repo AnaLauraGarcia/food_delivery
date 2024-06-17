@@ -56,25 +56,30 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         //slider section/Sección deslizante
         GetBuilder<PopularProductController>(builder:(popularProducts){
+
+          // Utiliza GetBuilder para obtener los productos populares desde el controlador 
+          // PopularProductController y construye una vista de páginas deslizantes (PageView) 
+          // que muestra estos productos.
+
+          // Muestra un indicador de carga (CircularProgressIndicator) mientras los datos se cargan.
+
           return popularProducts.isLoaded?Container(
             //color: Colors.redAccent,
             height: Dimensions.pageView,
-            child: GestureDetector(
-              onTap: (){
-                Get.toNamed(RouteHelper.getPopularFood());
-              },
+  
               child: PageView.builder(
                   controller: pageController,
                   itemCount:popularProducts.popularProductList.length,
                   itemBuilder: (context, position){
                 return _buildPageItem(position, popularProducts.popularProductList[position]);
               }),
-            ),
+            
           ):CircularProgressIndicator(  // Icono de carga
             color : AppColors.mainColor
           );
         }),
-        //dots/puntos
+        
+        // 3 dots/ 3 puntos
         GetBuilder<PopularProductController>(builder: (popularProducts){
           return DotsIndicator(
             dotsCount: popularProducts.popularProductList.isEmpty?1:popularProducts.popularProductList.length,
@@ -88,7 +93,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           );
         }),
       
-        //Popular text
+        //Popular text / productos recomendados (Lista de abajo)
         SizedBox(height: Dimensions.height30,),
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
@@ -109,9 +114,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             ],
           )
         ),
+        //Recommended Food
         
-        //list of food and images         
-        
+        //list of food and images   
+        // Utiliza GetBuilder para obtener productos recomendados desde el controlador RecommendedProductController.
+        // Muestra una lista (ListView.builder) de productos recomendados con una imagen y detalles.
+                   
         GetBuilder<RecommendedProductController>(builder: (recommendedProduct){
           return recommendedProduct.isLoaded?ListView.builder(
           physics: NeverScrollableScrollPhysics(),//AlwaysScrollableScrollPhysics(),
@@ -120,7 +128,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           itemBuilder: (context, index){
             return GestureDetector(
               onTap:(){
-                Get.toNamed(RouteHelper.getRecommendedFood());
+                Get.toNamed(RouteHelper.getRecommendedFood(index));
               },
               child: Container(
                 margin: EdgeInsets.only(left: Dimensions.width20, right: Dimensions.width20, bottom: Dimensions.height10), 
@@ -200,7 +208,17 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
   Widget _buildPageItem(int index, ProductModel popularProduct) {
+
+    // Matrix4 es una clase en Flutter que permite aplicar transformaciones 3D 
+    // (como escalado, rotación y traslación) a los widgets.
+
+    // _currPageValue almacena la posición actual del PageView, que puede ser una fracción entre 
+    // dos páginas (por ejemplo, 1.5 significa que la página actual está a medio camino entre la página 1 y la página 2).
+    
+    // floor() convierte esto en un entero, indicando la página a la que se está desplazando.
     Matrix4 matrix = new Matrix4.identity();
+
+    // Este código crea un efecto de escalado donde la página actual es más grande y las páginas adyacentes son más pequeñas, 
     if(index==_currPageValue.floor()){
       var currScale = 1-(_currPageValue-index)*(1-_scaleFactor);
       var currTrans = _height*(1-currScale)/2;
@@ -227,19 +245,24 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       transform: matrix,
       child: Stack(
         children: [
-          Container(
-            height: Dimensions.pageViewContainer,
-            margin: EdgeInsets.only(left:Dimensions.width10, right:Dimensions.width10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radius30),
-              color: index.isEven?Color(0xFF69c5df):Color(0xFF9294cc),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(                    //7:11:03
-                  AppConstants.BASE_URL+AppConstants.UPLOAD_URL+popularProduct.img!
+          GestureDetector(
+            onTap: (){
+                Get.toNamed(RouteHelper.getPopularFood(index));
+              },
+            child: Container(
+              height: Dimensions.pageViewContainer,
+              margin: EdgeInsets.only(left:Dimensions.width10, right:Dimensions.width10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                color: index.isEven?Color(0xFF69c5df):Color(0xFF9294cc),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(                    //7:11:03
+                    AppConstants.BASE_URL+AppConstants.UPLOAD_URL+popularProduct.img!
+                  )
                 )
               )
-            )
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
