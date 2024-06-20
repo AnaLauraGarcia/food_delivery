@@ -96,7 +96,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Image.asset(
-                    'assets/image/recommended_food/${product.img}',
+                    'assets/image/${product.img}',
                     fit: BoxFit.cover,
                   ),
                 ],

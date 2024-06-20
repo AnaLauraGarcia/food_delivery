@@ -46,7 +46,7 @@ class PopularFoodDetail extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover, //Este es el que amplia la imagen gasta los bordes
                   image: AssetImage(                    //7:11:03
-                    'assets/image/popular_food/${product.img!}',
+                    'assets/image/${product.img!}',
                   ),
                 ),
               ),

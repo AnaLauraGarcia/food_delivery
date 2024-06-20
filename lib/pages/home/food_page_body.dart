@@ -144,7 +144,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                             image: AssetImage(
-                              'assets/image/recommended_food/${recommendedProduct.recommendedProductList[index].img}',
+                              'assets/image/${recommendedProduct.recommendedProductList[index].img}',
                             ),
                         ),
                       ),
@@ -258,7 +258,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(                    //7:11:03
-                    'assets/image/popular_food/${popularProduct.img!}',
+                    'assets/image/${popularProduct.img!}',
                   )
                 ),
               )

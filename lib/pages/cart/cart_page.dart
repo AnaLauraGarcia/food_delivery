@@ -88,7 +88,7 @@ class CartPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   fit: BoxFit.cover,             
-                                  image: AssetImage('assets/image/popular_food/${product.img}'),
+                                  image: AssetImage('assets/image/${product.img}'),
                                 ),
                                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                                 color: Colors.white
