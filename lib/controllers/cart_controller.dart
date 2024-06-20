@@ -90,7 +90,7 @@ class CartController extends GetxController{
     return totalQuantity;
   }
 
-  // Lista de comida
+  // Lista de comida que devuelve una lista de objetos tipo CartModel --> Lo que vemos del carrito
   List<CartModel> get getItems{
     return _items.entries.map((e){
       return e.value;

@@ -27,3 +27,6 @@
 // Probando cambios-----
 
 // Falta ver como cargar ambas imagenes (popular, recommeded) en la page CART (cart_page.dart)
+
+// Logica de como llega desde la pagina inicial al carrito el producto elegido (recommended): 35:53
+// food_page_body recibe un index que lo envia a recommended_food_detail

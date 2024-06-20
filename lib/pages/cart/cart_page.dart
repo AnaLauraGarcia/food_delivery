@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
+import 'package:food_delivery/controllers/popular_product_controller.dart';
+import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/app_constants.dart';
@@ -22,6 +24,9 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+
+          // Elementos de la barra superior
+
           Positioned(
             top: Dimensions.height20*3,
             left: Dimensions.width20,
@@ -59,6 +64,8 @@ class CartPage extends StatelessWidget {
 
             )
           ),
+
+          // Lista de productos del carrito
           Positioned(
             top: Dimensions.height20*5,
             left: Dimensions.width20,
@@ -71,17 +78,34 @@ class CartPage extends StatelessWidget {
                 context:context,
                 removeTop:true,
                 child: GetBuilder<CartController>(builder:(cartController){
-                  var _cartList = cartController.getItems;
+                  var _cartList = cartController.getItems; // Lista del carrito
                   return ListView.builder(
                     itemCount: _cartList.length,
                     itemBuilder: (_, index){
                       var product = _cartList[index];
                       return Container(
+                        // Muestra la imagen y detalles de cada producto
+
                         width: double.maxFinite,
                         height: Dimensions.height20*5,
                         child: Row(
                           children: [
-                            Container(
+                            GestureDetector( // Lógica para poder acceder a mas informacion sobre el producto dentro del carrito
+                              onTap:(){ //42:07
+                                var popularIndex= Get.find<PopularProductController>()
+                                  .popularProductList
+                                  .indexOf(_cartList[index].product!);
+
+                                if(popularIndex>=0){
+                                  Get.toNamed(RouteHelper.getPopularFood(popularIndex));
+                                }else{
+                                  var recommendedIndex= Get.find<RecommendedProductController>()
+                                    .recommendedProductList
+                                    .indexOf(_cartList[index].product!);
+                                  Get.toNamed(RouteHelper.getRecommendedFood(recommendedIndex));
+                                }
+                              },
+                              child:Container(
                               width: Dimensions.height20*5,
                               height: Dimensions.height20*5,
                               margin: EdgeInsets.only(bottom: Dimensions.height10),
@@ -93,6 +117,7 @@ class CartPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                                 color: Colors.white
                               ),
+                            ),
                             ),
                             SizedBox(width: Dimensions.width10,),
                             Expanded(child: Container(
