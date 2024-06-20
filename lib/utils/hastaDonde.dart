@@ -25,3 +25,5 @@
 
 
 // Probando cambios-----
+
+// Falta ver como cargar ambas imagenes (popular, recommeded) en la page CART (cart_page.dart)

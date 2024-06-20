@@ -65,7 +65,9 @@ flutter:
   assets:
     - assets/image/
     - assets/image/popular_food/
+    - assets/image/recommended_food/
     - assets/json/products_popular_model.json
+    - assets/json/recommended_products_model.json
     
   fonts:
     - family: Roboto

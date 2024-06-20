@@ -143,9 +143,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         color:Colors.white38,
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                            image: NetworkImage(                    //7:11:03
-                              AppConstants.BASE_URL+AppConstants.UPLOAD_URL+recommendedProduct.recommendedProductList[index].img!
-                            )
+                            image: AssetImage(
+                              'assets/image/recommended_food/${recommendedProduct.recommendedProductList[index].img}',
+                            ),
                         ),
                       ),
                     ),

@@ -1,12 +1,34 @@
-import 'package:food_delivery/data/api/api_client.dart';
-import 'package:food_delivery/utils/app_constants.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:food_delivery/models/products_model.dart';
 import 'package:get/get.dart';
 
 class RecommendedProductRepo extends GetxService {
-  final ApiClient apiClient;
-  RecommendedProductRepo({required this.apiClient});
+  List<ProductModel> _products = [];
 
-  Future<Response> getRecommendedProductList() async{
-    return await apiClient.getData(AppConstants.RECOMMENDED_PRODUCT_URI); //end point url
+  // Método para cargar los productos desde el archivo JSON.
+  Future<void> loadProductsFromJson() async {
+    try {
+      String jsonString = await rootBundle.loadString('assets/json/recommended_products_model.json');
+      Map<String, dynamic> jsonData = jsonDecode(jsonString);
+
+      if (jsonData.containsKey('products') && jsonData['products'] is List) {
+        // Extrae la lista de productos del JSON
+        List<dynamic> jsonList = jsonData['products'];
+        _products = jsonList.map((json) => ProductModel.fromJson(json)).toList();
+      } else {
+        throw Exception('El JSON no contiene una lista válida de productos');
+      }
+    } catch (e) {
+      print('Error cargando productos desde JSON: $e');
+    }
+  }
+
+  // Método para obtener la lista de productos populares.
+  Future<List<ProductModel>> getPopularProductList() async {
+    if (_products.isEmpty) {
+      await loadProductsFromJson();
+    }
+    return _products;
   }
 }
