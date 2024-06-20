@@ -28,10 +28,13 @@ class PopularProductController extends GetxController {
   Future<void> getPopularProductList() async {
     try {
       // Carga el JSON desde assets
-      String jsonString = await rootBundle.loadString('assets/Json/products_model_json.json');
+      String jsonString = await rootBundle.loadString('assets/json/products_popular_model.json');
+      Map<String, dynamic> jsonMap = jsonDecode(jsonString);
+
       
       // Decodifica el JSON
-      List<dynamic> jsonList = jsonDecode(jsonString);
+      List<dynamic> jsonList = jsonMap['products'];
+
       
       // Mapea los datos JSON a objetos ProductModel
       _popularProductList = jsonList.map((json) => ProductModel.fromJson(json)).toList();

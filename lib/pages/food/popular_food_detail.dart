@@ -6,6 +6,7 @@ import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/models/products_model.dart';
 import 'package:food_delivery/utils/app_constants.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
@@ -24,7 +25,7 @@ class PopularFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var product= Get.find<PopularProductController>().popularProductList[pageId];
+    var product = Get.find<PopularProductController>().popularProductList[pageId];
     print("page is id "+pageId.toString());
     print("product name is "+product.name.toString());
 
@@ -44,9 +45,9 @@ class PopularFoodDetail extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover, //Este es el que amplia la imagen gasta los bordes
-                  image: NetworkImage(
-                    AppConstants.BASE_URL+AppConstants.UPLOAD_URL+product.img!
-                  )
+                  image: AssetImage(                    //7:11:03
+                    'assets/image/popular_food/${product.img!}',
+                  ),
                 ),
               ),
             ),

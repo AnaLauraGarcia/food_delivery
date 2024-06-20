@@ -1,0 +1,127 @@
+{
+  "total_size": 13,
+  "type_id": 3,
+  "offset": 0,
+  "productos": [
+    {
+      "id": 3,
+      "nombre": "Tiramisú",
+      "descripcion": "El tiramisú es un postre clásico italiano que se ha vuelto muy popular en Argentina. Se elabora con capas de bizcochos de café empapados en licor, alternadas con una suave crema de mascarpone y finalmente espolvoreado con cacao en polvo. Este postre es perfecto para los amantes del café y el dulce, ofreciendo una combinación exquisita de sabores y texturas.",
+      "precio": 120,
+      "estrellas": 4.6,
+      "img": "recommended3.jpgg",
+      "ubicacion": "Calle Lavalle 1500",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 4,
+      "nombre": "Lomo al champignon",
+      "descripcion": "El lomo al champignon es un plato principal delicioso y sofisticado que consiste en un tierno lomo de res cocido a la plancha y servido con una rica salsa cremosa de champiñones. Este plato se acompaña generalmente con papas fritas o puré de papas, y es perfecto para una cena especial o una ocasión en la que se quiera disfrutar de una comida gourmet.",
+      "precio": 250,
+      "estrellas": 4.4,
+      "img": "recommended4.jpgg",
+      "ubicacion": "Calle Reconquista 1700",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 5,
+      "nombre": "Cazuela de mariscos",
+      "descripcion": "La cazuela de mariscos es un estofado delicioso y nutritivo que incluye una variedad de mariscos frescos como mejillones, camarones y calamares. Todo esto se cocina en una sabrosa salsa de tomate con hierbas aromáticas, creando un plato que es tan delicioso como reconfortante. Ideal para los amantes del marisco y para aquellos que disfrutan de sabores intensos y frescos.",
+      "precio": 280,
+      "estrellas": 4.7,
+      "img": "recommended5.jpgg",
+      "ubicacion": "Av. Corrientes 1800",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 8,
+      "nombre": "Ensalada César con pollo",
+      "descripcion": "La ensalada César con pollo es una opción fresca y saludable que combina lechuga crujiente, crutones dorados, y jugosos trozos de pollo a la parrilla. Todo esto se mezcla con queso parmesano rallado y se adereza con la clásica salsa César, que le da un toque cremoso y sabroso. Perfecta para una comida ligera pero satisfactoria.",
+      "precio": 150,
+      "estrellas": 4.2,
+      "img": "recommended8.jpgg",
+      "ubicacion": "Calle Lavalle 1400",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 9,
+      "nombre": "Pastel de papas",
+      "descripcion": "El pastel de papas es un plato tradicional argentino que consiste en una base de carne molida sazonada con cebolla, especias y a veces aceitunas o pasas, cubierta con una capa de puré de papas gratinado al horno. Este plato es reconfortante y sustancioso, perfecto para los días fríos o para una cena familiar.",
+      "precio": 180,
+      "estrellas": 4.6,
+      "img": "recommended9.jpgg",
+      "ubicacion": "Av. Callao 1200",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 12,
+      "nombre": "Tarta de espinacas",
+      "descripcion": "La tarta de espinacas es una opción deliciosa y nutritiva, rellena con espinacas salteadas, queso mozzarella y cebolla caramelizada. Esta tarta es perfecta para una comida ligera o un almuerzo, y puede ser disfrutada tanto caliente como fría. Su sabor suave y su textura cremosa la hacen una favorita entre los vegetarianos y amantes de las verduras.",
+      "precio": 160,
+      "estrellas": 4.3,
+      "img": "recommended12.jpgg",
+      "ubicacion": "Calle Florida 1600",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 13,
+      "nombre": "Sorrentinos de jamón y queso",
+      "descripcion": "Los sorrentinos de jamón y queso son una deliciosa pasta rellena que se sirve con una cremosa salsa de crema y se espolvorea con queso parmesano rallado. Esta especialidad es ideal para quienes buscan una comida reconfortante y sabrosa, con la combinación perfecta de ingredientes clásicos que se funden en cada bocado.",
+      "precio": 190,
+      "estrellas": 4.8,
+      "img": "recommended13.jpgg",
+      "ubicacion": "Av. Belgrano 2000",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 17,
+      "nombre": "Cordero patagónico a la parrilla",
+      "descripcion": "El cordero patagónico a la parrilla es un plato emblemático de la región de la Patagonia en Argentina. Este plato consiste en cordero asado a la parrilla con hierbas aromáticas, logrando una carne tierna y jugosa que se deshace en la boca. Acompañado de papas asadas, este plato es perfecto para una comida robusta y llena de sabor.",
+      "precio": 300,
+      "estrellas": 4.9,
+      "img": "recommended17.jpgg",
+      "ubicacion": "Av. Scalabrini Ortiz 1900",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 18,
+      "nombre": "Flan casero con dulce de leche",
+      "descripcion": "El flan casero con dulce de leche es un postre clásico argentino que nunca pasa de moda. Este flan se prepara con huevos, leche y azúcar, y se hornea hasta lograr una textura suave y cremosa. Se sirve con una generosa porción de dulce de leche por encima, creando una combinación perfecta de sabores dulces y caramelo.",
+      "precio": 80,
+      "estrellas": 4.7,
+      "img": "recommended18.jpgg",
+      "ubicacion": "Av. Libertador 2100",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    },
+    {
+      "id": 21,
+      "nombre": "Torta de chocolate",
+      "descripcion": "La torta de chocolate es un postre indulgente y delicioso, perfecto para los amantes del chocolate. Esta torta se hace con capas de bizcocho de chocolate esponjoso, relleno y cubierto con una rica ganache de chocolate. Es el postre ideal para celebrar ocasiones especiales o simplemente para disfrutar de un dulce capricho.",
+      "precio": 100,
+      "estrellas": 4.5,
+      "img": "recommended21.jpgg",
+      "ubicacion": "Av. 9 de Julio 2200",
+      "creado_en": "2023-08-10 11:00:00",
+      "actualizado_en": "2024-06-20 17:00:00",
+      "type_id": 3
+    }
+  ]
+}

@@ -75,6 +75,7 @@ class CartPage extends StatelessWidget {
                   return ListView.builder(
                     itemCount: _cartList.length,
                     itemBuilder: (_, index){
+                      var product = _cartList[index];
                       return Container(
                         width: double.maxFinite,
                         height: Dimensions.height20*5,
@@ -86,10 +87,8 @@ class CartPage extends StatelessWidget {
                               margin: EdgeInsets.only(bottom: Dimensions.height10),
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                    AppConstants.BASE_URL+AppConstants.UPLOAD_URL+cartController.getItems[index].img!
-                                  )
+                                  fit: BoxFit.cover,             
+                                  image: AssetImage('assets/image/popular_food/${product.img}'),
                                 ),
                                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                                 color: Colors.white
