@@ -1,15 +1,29 @@
-import 'package:food_delivery/data/api/api_client.dart';
-import 'package:food_delivery/utils/app_constants.dart';
-import 'package:get/get.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:food_delivery/models/products_model.dart';
 
-// Se define la clase PopularProductRepo, que se encarga de interactuar con la API para obtener la lista de productos populares. 
+import 'package:get/get.dart';
 
 
 class PopularProductRepo extends GetxService {
-  final ApiClient apiClient;
-  PopularProductRepo({required this.apiClient});
+  List<ProductModel> _products = [];
 
-  Future<Response> getPopularProductList() async{
-    return await apiClient.getData(AppConstants.POPULAR_PRODUCT_URI); //end point url
+  // Método para cargar los productos desde el archivo JSON.
+  Future<void> loadProductsFromJson() async {
+    try {
+      String jsonString = await rootBundle.loadString('assets/Json/products_model_json.json');
+      List<dynamic> jsonList = jsonDecode(jsonString);
+      _products = jsonList.map((json) => ProductModel.fromJson(json)).toList();
+    } catch (e) {
+      print('Error cargando productos desde JSON: $e');
+    }
+  }
+
+  // Método para obtener la lista de productos populares.
+  Future<List<ProductModel>> getPopularProductList() async {
+    if (_products.isEmpty) {
+      await loadProductsFromJson();
+    }
+    return _products;
   }
 }

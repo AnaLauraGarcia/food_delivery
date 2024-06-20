@@ -11,10 +11,10 @@ import 'package:get/get.dart';
 
 Future<void> init()async {
   //api client
-  Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
+  //Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL));
 
   //repos
-  Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
+  //Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => CartRepo());
 

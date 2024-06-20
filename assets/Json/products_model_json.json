@@ -1,0 +1,140 @@
+{
+  "total_size": 11,
+  "type_id": 2,
+  "offset": 0,
+  "products": [
+    {
+      "id": 1,
+      "name": "Empanada",
+      "description": "Empanada argentina de carne, preparada con una masa crujiente y un relleno jugoso de carne picada, cebolla, huevo y aceitunas. Ideal para una entrada o un almuerzo rápido.",
+      "price": 150,
+      "stars": 5,
+      "img": "images/empanada.jpg",
+      "location": "Calle Florida 100, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 2,
+      "name": "Asado",
+      "description": "Asado argentino con chimichurri, cocinado a la perfección en una parrilla al carbón. Incluye cortes como tira de asado, vacío y chorizo, acompañado de ensaladas y pan.",
+      "price": 300,
+      "stars": 5,
+      "img": "images/asado.jpg",
+      "location": "Av. Corrientes 2000, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 3,
+      "name": "Milanesa",
+      "description": "Milanesa de carne con papas fritas, empanizada y frita hasta obtener una textura dorada y crujiente. Perfecta para el almuerzo o la cena, acompañada con una porción generosa de papas fritas.",
+      "price": 200,
+      "stars": 4,
+      "img": "images/milanesa.jpg",
+      "location": "Calle San Martín 400, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 4,
+      "name": "Locro",
+      "description": "Locro criollo argentino, un guiso tradicional preparado con maíz, porotos, zapallo, carne de cerdo y embutidos. Es un plato típico de las festividades patrias, perfecto para los días fríos.",
+      "price": 250,
+      "stars": 4,
+      "img": "images/locro.jpg",
+      "location": "Av. de Mayo 900, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 5,
+      "name": "Humita",
+      "description": "Humita en chala, un plato tradicional del norte argentino. Hecha con maíz fresco rallado, cebolla, pimientos y queso, todo envuelto en hojas de maíz y cocido al vapor.",
+      "price": 180,
+      "stars": 4,
+      "img": "images/humita.jpg",
+      "location": "Calle Defensa 700, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 6,
+      "name": "Choripán",
+      "description": "Choripán con chimichurri, un clásico de la comida callejera argentina. Chorizo asado a la parrilla servido en un pan fresco, acompañado con una generosa cantidad de chimichurri casero.",
+      "price": 120,
+      "stars": 4,
+      "img": "images/choripan.jpg",
+      "location": "Av. 9 de Julio 1000, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 7,
+      "name": "Provoleta",
+      "description": "Provoleta a la parrilla, un queso provolone grueso asado hasta que esté dorado y burbujeante. Perfecto como entrada o acompañamiento en un asado.",
+      "price": 160,
+      "stars": 4,
+      "img": "images/provoleta.jpg",
+      "location": "Calle Lavalle 800, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 8,
+      "name": "Matambre a la pizza",
+      "description": "Matambre de cerdo a la pizza, una deliciosa combinación de matambre cocido a la parrilla cubierto con salsa de tomate, mozzarella y orégano. Una fusión perfecta de carne y pizza.",
+      "price": 220,
+      "stars": 5,
+      "img": "images/matambre.jpg",
+      "location": "Calle Tucumán 900, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 9,
+      "name": "Tarta de jamón y queso",
+      "description": "Tarta casera de jamón y queso, hecha con una masa crocante y un relleno cremoso de jamón cocido y queso derretido. Ideal para cualquier comida del día.",
+      "price": 140,
+      "stars": 4,
+      "img": "images/tarta.jpg",
+      "location": "Calle Reconquista 500, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 10,
+      "name": "Ravioles de ricota",
+      "description": "Ravioles de ricota con salsa, pasta rellena de ricota y espinacas, servida con una deliciosa salsa de tomate casera. Un plato que combina la tradición italiana con ingredientes locales.",
+      "price": 180,
+      "stars": 5,
+      "img": "images/ravioles.jpg",
+      "location": "Calle Belgrano 600, CABA",
+      "created_at": "2023-11-08 10:33:48",
+      "updated_at": "2023-11-08 10:33:48",
+      "type_id": 2
+    },
+    {
+      "id": 11,
+      "name": "Pollo a la Parrilla",
+      "description": "Jugoso pollo a la parrilla marinado con hierbas frescas y especias, servido con una guarnición de papas asadas y una ensalada fresca. Ideal para un almuerzo o cena saludable y deliciosa.",
+      "price": 400,
+      "stars": 5,
+      "img": "images/pollo_parrilla.jpg",
+      "location": "Av. Corrientes 1234, CABA",
+      "created_at": "2024-06-20 15:00:00",
+      "updated_at": "2024-06-20 15:00:00",
+      "type_id": 2
+    }
+  ]
+}
+

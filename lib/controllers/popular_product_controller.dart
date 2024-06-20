@@ -1,124 +1,108 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
-import 'package:food_delivery/data/repository/popular_product_repo.dart';
 import 'package:food_delivery/models/cart_model.dart';
 import 'package:food_delivery/models/products_model.dart';
-import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
+import 'package:food_delivery/data/repository/popular_product_repo.dart'; // Asegúrate de importar tu repositorio
 
-// La clase PopularProductController sirve como un controlador para manejar la lógica 
-// de los productos populares en el carrito.
-// Utiliza el paquete GetX para manejar el estado de la aplicación y se comunica con el repositorio de productos populares para obtener datos. 
-
-class PopularProductController extends GetxController{
+class PopularProductController extends GetxController {
   final PopularProductRepo popularProductRepo;
   PopularProductController({required this.popularProductRepo});
-  List<ProductModel> _popularProductList=[];
+  
+  List<ProductModel> _popularProductList = [];
   List<ProductModel> get popularProductList => _popularProductList; 
+
   late CartController _cart;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
   int _quantity = 0;
-  int get quantity=> _quantity;
-  int _inCartItems = 0;
-  int get inCartItems=>_inCartItems+_quantity;
+  int get quantity => _quantity;
 
-  Future<void> getPopularProductList() async { // Este método obtiene la lista de productos populares desde el repositorio y actualiza el estado interno.
-    Response response = await popularProductRepo.getPopularProductList();
-    if(response.statusCode == 200){
-      print("got products recommended");
-      _popularProductList=[];
-      _popularProductList.addAll(Product.fromJson(response.body).products);
+  int _inCartItems = 0;
+  int get inCartItems => _inCartItems + _quantity;
+
+  Future<void> getPopularProductList() async {
+    try {
+      // Carga el JSON desde assets
+      String jsonString = await rootBundle.loadString('assets/Json/products_model_json.json');
+      
+      // Decodifica el JSON
+      List<dynamic> jsonList = jsonDecode(jsonString);
+      
+      // Mapea los datos JSON a objetos ProductModel
+      _popularProductList = jsonList.map((json) => ProductModel.fromJson(json)).toList();
+      
+      // Indica que la carga ha sido exitosa
       _isLoaded = true;
-      // print(_popularProductList);
-      update();
-    }else{
-      print("could not get products recommended");
+      update(); // Actualiza la UI
+    } catch (e) {
+      // Maneja los errores si ocurre alguno durante la carga
+      print('Error cargando productos: $e');
     }
   }
 
-  // Funcion que se encarga de aumentar o disminuir los productos del carrito
-  void setQuantity(bool isIncrement){
-    if(isIncrement){
-      print("increment"+_quantity.toString());
-      _quantity =checkQuantity(_quantity+1);
-      print("number of items"+_quantity.toString());
-    }else{
-      print("decrement "+_quantity.toString());
-      _quantity =checkQuantity(_quantity-1);
-    }
+  @override
+  void onInit() {
+    super.onInit();
+    // Cuando se inicializa el controlador, carga los productos populares
+    getPopularProductList();
+  }
 
-    // Funcion pora actualizar el contador al apretar. 
+  // Función para aumentar o disminuir la cantidad de productos en el carrito
+  void setQuantity(bool isIncrement) {
+    if (isIncrement) {
+      _quantity = checkQuantity(_quantity + 1);
+    } else {
+      _quantity = checkQuantity(_quantity - 1);
+    }
     update();
   }
 
-  // Contador de la cantidad de productos. Este método verifica y asegura que la cantidad de productos en el carrito 
-  // no sea menor que cero ni mayor que 20, mostrando notificaciones si se exceden estos límites.
-  int checkQuantity(int quantity){
-    if((_inCartItems+quantity)<0){
-      Get.snackbar("Item count","You can't reduce more!",
-        backgroundColor: AppColors.mainColor,
+  // Verifica la cantidad de productos en el carrito
+  int checkQuantity(int quantity) {
+    if ((_inCartItems + quantity) < 0) {
+      Get.snackbar(
+        "Item count",
+        "You can't reduce more!",
+        backgroundColor: Colors.red,
         colorText: Colors.white,
       );
-      if(_inCartItems>0){
-        _quantity = -_inCartItems;
-        return _quantity;
-      }
-
       return 0;
-    }else if(_inCartItems+quantity>20){
-      Get.snackbar("Item count","You can't add more!",
-        backgroundColor: AppColors.mainColor,
+    } else if ((_inCartItems + quantity) > 20) {
+      Get.snackbar(
+        "Item count",
+        "You can't add more!",
+        backgroundColor: Colors.red,
         colorText: Colors.white,
       );
       return 20;
-    }else{
+    } else {
       return quantity;
     }
   }
 
-
-// Inicializa el controlador con un producto específico y el controlador del carrito, verificando si el producto ya está en el carrito.
-  void initProduct(ProductModel product, CartController cart){
-    _quantity=0;
-    _inCartItems=0;
-    _cart=cart;
-    var exist=false;
-    exist = _cart.existInCart(product);
-    print("exist or not"+exist.toString());
-    if(exist){
-      _inCartItems=_cart.getQuantity(product);
-    }
-    print("the quantity in the cart is "+_inCartItems.toString());
+  // Inicializa el producto en el controlador
+  void initProduct(ProductModel product, CartController cart) {
+    _cart = cart;
+    var exist = _cart.existInCart(product);
+    _inCartItems = exist ? _cart.getQuantity(product) : 0;
   }
 
-
-// Inicializa el controlador con un producto específico y el controlador del carrito, verificando si el producto ya está en el carrito.
-  void addItem(ProductModel product){
-
-      _cart.addItem(product, _quantity);
-      
-      _quantity=0;
-      _inCartItems=_cart.getQuantity(product);
-      
-      _cart.items.forEach((key, value){
-        print("The id is "+value.id.toString()+" The quantity is "+value.quantity.toString());
-      });
-
-    update();   
+  // Agrega un producto al carrito
+  void addItem(ProductModel product) {
+    _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
+    update();
   }
 
+  // Obtiene el número total de ítems en el carrito
+  int get totalItems => _cart.totalItems;
 
-
-// Estas propiedades devuelven el total de ítems en el carrito y la lista de ítems en el carrito.
-
-  int get totalItems{
-    return _cart.totalItems;
-  }
-
-  List<CartModel> get getItems{
-    return _cart.getItems;
-  }
+  // Obtiene la lista de ítems en el carrito
+  List<CartModel> get getItems => _cart.getItems;
 }
