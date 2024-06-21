@@ -25,7 +25,7 @@ class CartController extends GetxController{
           price: value.price,
           img: value.img,
           quantity: value.quantity!+quantity,
-          isExit: true,
+          isExist: true,
           time: DateTime.now().toString(),
           product: product,
         );
@@ -45,7 +45,7 @@ class CartController extends GetxController{
             price: product.price,
             img: product.img,
             quantity: quantity,
-            isExit: true,
+            isExist: true,
             time: DateTime.now().toString(),
             product: product,
           );}
@@ -57,7 +57,7 @@ class CartController extends GetxController{
        );
       }
     }
-
+    cartRepo.addToCartList(getItems); // 02:08:49
     // Con este update actualizamos los contadores si deseamos cambiarlos desde la pag.
     update();
     
