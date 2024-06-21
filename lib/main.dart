@@ -31,8 +31,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       
       //home: MainFoodPage(),
-      home: SplashScreen(),
-      //initialRoute: RouteHelper.getInitial(),
+      //home: SplashScreen(),
+      initialRoute: RouteHelper.getInitial(),
       getPages: RouteHelper.routes,
     );
   }
