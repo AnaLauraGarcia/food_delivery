@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
 import 'package:food_delivery/routes/route_helper.dart';
+import 'package:food_delivery/utils/dimensions.dart';
 import 'package:get/get.dart';
 import 'dart:async';  // Para usar Timer()
 
@@ -55,7 +56,8 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ScaleTransition(scale:animation,
-          child: Center(child: Image.asset("assets/image/logo.png"))),
+          child: Center(child: Image.asset("assets/image/logo.png", 
+          width: Dimensions.splashImg,))),
         ]
       )
 

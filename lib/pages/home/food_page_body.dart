@@ -85,7 +85,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             dotsCount: popularProducts.popularProductList.isEmpty?1:popularProducts.popularProductList.length,
             position: _currPageValue,
             decorator: DotsDecorator(
-              activeColor: AppColors.mainColor,
+              activeColor: Color(0xFFFF714031),
               size: const Size.square(9.0),
               activeSize: const Size(18.0, 9.0),
               activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
@@ -100,7 +100,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: "Recommended"),
+              BigText(text: "Recomendado"),
               SizedBox(width: Dimensions.width10,),
               Container(
                 margin: const EdgeInsets.only(bottom: 3),
@@ -158,7 +158,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             topRight: Radius.circular(Dimensions.radius20),
                             bottomRight: Radius.circular(Dimensions.radius20),
                           ),
-                          color: Colors.white,
+                          color: Color(0xFFFFFDF6),
                         ),
                         child: Padding(
                           padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10) ,
@@ -168,7 +168,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                             children: [
                               BigText(text: recommendedProduct.recommendedProductList[index].name!),
                               SizedBox(height: Dimensions.height10,),
-                              SmallText(text: "With chinese characteristics"),
+                              SmallText(text: "Características..."),
                               //SmallText(text: recommendedProduct.recommendedProductList[index].description!),
               
                               SizedBox(height: Dimensions.height10,),
@@ -254,7 +254,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               margin: EdgeInsets.only(left:Dimensions.width10, right:Dimensions.width10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: index.isEven?Color(0xFF69c5df):Color(0xFF9294cc),
+                color: index.isEven?Color.fromARGB(255, 223, 119, 105):Color(0xFF9294cc),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(                    //7:11:03
@@ -271,10 +271,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               margin: EdgeInsets.only(left:Dimensions.width30, right:Dimensions.width30, bottom: Dimensions.height30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: Colors.white,
+                color: Color(0xFFFFFDF6),
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xFFe8e8e8),
+                    color:Color(0xFFEF9D9D), 
                     blurRadius: 5.0,
                     offset: Offset(0, 5)
                   ),
@@ -291,6 +291,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 
               ),
               child: Container(
+               
                 padding: EdgeInsets.only(top: Dimensions.height15, left: 15, right:15),
                 child: AppColumn(text: popularProduct.name!,),       //07:13:48
               ),

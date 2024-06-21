@@ -1,3 +1,6 @@
+// BODY DE LOS PRODUCTOS POPULARES
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -33,7 +36,7 @@ class PopularFoodDetail extends StatelessWidget {
     Get.find<PopularProductController>().initProduct(product, Get.find<CartController>()); // Establece en 0 al contador de los productos cada vez que cambia de comida.
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:  Color(0xFFFFFDF6),
       body: Stack(
         children: [
           //background image
@@ -123,7 +126,7 @@ class PopularFoodDetail extends StatelessWidget {
                     topRight: Radius.circular(Dimensions.radius20) ,
                     topLeft: Radius.circular(Dimensions.radius20) ,
                   ),
-                  color: Colors.white,
+                  color: Color(0xFFFFFDF6),
                   //color: Colors.redAccent,
                 ),
                 child: Column(
@@ -131,7 +134,7 @@ class PopularFoodDetail extends StatelessWidget {
                   children: [
                     AppColumn(text:product.name!),
                     SizedBox(height: Dimensions.height20,),
-                    BigText(text: "Introduce"),
+                    BigText(text: "Descripción"),
                     SizedBox(height: Dimensions.height20,),
                     Expanded(child: SingleChildScrollView(child: ExpandableTextWidget(text: product.description!)))
                   ],
@@ -146,7 +149,7 @@ class PopularFoodDetail extends StatelessWidget {
           height: Dimensions.bottomHeightBar,
           padding: EdgeInsets.only(top:Dimensions.height30,bottom: Dimensions.height30, left: Dimensions.width20, right: Dimensions.width20),
           decoration: BoxDecoration(
-            color: AppColors.buttonBackaroundColor,
+            color: Color(0xFFFFFDF6),
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(Dimensions.radius20*2),
               topRight: Radius.circular(Dimensions.radius20*2),
@@ -159,7 +162,11 @@ class PopularFoodDetail extends StatelessWidget {
                 padding: EdgeInsets.only(top:Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: Colors.white,
+                  color: Color.fromARGB(216, 113, 64, 49),
+                      border: Border.all(
+                        color: Color(0xFFFF714031),// Color del borde
+                        width: 1.0, // Ancho del borde (opcional)
+                      ),
                 ),
               
                 child: Row(
@@ -168,15 +175,15 @@ class PopularFoodDetail extends StatelessWidget {
                       onTap: (){
                         popularProduct.setQuantity(false);                     
                       },
-                      child: Icon(Icons.remove, color: AppColors.signColor,)) ,// Icon -
+                      child: Icon(Icons.remove, color:  Color(0xFFFEF9D9D),)) ,// Icon -
                     SizedBox(width: Dimensions.width10/2,),
-                    BigText(text: popularProduct.inCartItems.toString()),
+                    BigText(text: popularProduct.inCartItems.toString(), color: Colors.white),
                     SizedBox(width: Dimensions.width10/2,),
                     GestureDetector(
                       onTap: (){
                         popularProduct.setQuantity(true);                     
                       },
-                      child: Icon(Icons.add, color: AppColors.signColor,)) // Icon +
+                      child: Icon(Icons.add, color: Color(0xFFFEF9D9D),)) // Icon +
                   ]
                     
                 ),
@@ -188,7 +195,7 @@ class PopularFoodDetail extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.only(top:Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),                
                   
-                    child: BigText(text: "\$ ${product.price!} | Add to cart", color: Colors.white,),
+                    child: BigText(text: "\$ ${product.price!} | Agregar al carrito", color: Colors.white,),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor,

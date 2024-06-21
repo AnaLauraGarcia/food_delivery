@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: AppColors.mainColor,
-        unselectedItemColor: Colors.amberAccent,
+        unselectedItemColor: Color(0xFF714031), 
         showSelectedLabels: false,
         showUnselectedLabels: false,
         selectedFontSize: 0.0,

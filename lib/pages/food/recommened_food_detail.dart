@@ -1,3 +1,6 @@
+// BODY DE LOS PRODUCTOS RECOMENDADOS
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
@@ -24,7 +27,7 @@ class RecommendedFoodDetail extends StatelessWidget {
     Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFFFFDF6),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -85,7 +88,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 width: double.maxFinite,
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Color(0xFFFFFDF6),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Dimensions.radius20),
                     topRight: Radius.circular(Dimensions.radius20),
@@ -125,6 +128,7 @@ class RecommendedFoodDetail extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
+              
               padding: EdgeInsets.symmetric(horizontal: Dimensions.width20 * 2.5, vertical: Dimensions.height10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -176,7 +180,11 @@ class RecommendedFoodDetail extends StatelessWidget {
                     padding: EdgeInsets.all(Dimensions.width20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: Colors.white,
+                      color: Color.fromARGB(216, 113, 64, 49),
+                      border: Border.all(
+                        color: Color(0xFFFF714031),// Color del borde
+                        width: 1.0, // Ancho del borde (opcional)
+                      ),
                     ),
                     child: Icon(
                       Icons.favorite,

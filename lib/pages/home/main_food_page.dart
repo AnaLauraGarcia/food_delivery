@@ -21,6 +21,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFFFDF6),
       body: Column(
         children:[
           // HEADER----------------------------------------------------------------

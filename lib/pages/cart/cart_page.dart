@@ -132,7 +132,7 @@ class CartPage extends StatelessWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      BigText(text: cartController.getItems[index].price.toString(), color: Colors.redAccent,),
+                                      BigText(text: "\$ "+cartController.getItems[index].price.toString(), color: Colors.brown,),
                                       Container(
                                         padding: EdgeInsets.only(top:Dimensions.height10, bottom: Dimensions.height10, left: Dimensions.width20, right: Dimensions.width10),
                                         decoration: BoxDecoration(
@@ -191,14 +191,18 @@ class CartPage extends StatelessWidget {
                   padding: EdgeInsets.only(top:Dimensions.height20, bottom: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: Colors.white,
+                    color: Color.fromARGB(216, 113, 64, 49),
+                      border: Border.all(
+                        color: Color(0xFFFF714031),// Color del borde
+                        width: 1.0, // Ancho del borde (opcional)
+                      ),
                   ),
                 
                   child: Row(
                     children: [ 
                      
                       SizedBox(width: Dimensions.width10/2,),
-                      BigText(text: "\$ "+cartController.totalAmount.toString()),
+                      BigText(text: "\$ "+cartController.totalAmount.toString(), color: Colors.white,),
                       SizedBox(width: Dimensions.width10/2,),
                       
                     ]
