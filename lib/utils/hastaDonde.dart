@@ -30,3 +30,11 @@
 
 // Logica de como llega desde la pagina inicial al carrito el producto elegido (recommended): 35:53
 // food_page_body recibe un index que lo envia a recommended_food_detail
+
+// LA logica de volver hacia atras al carrito o al inicio se da aprox en el 53:58
+// utiliza una cadena de texto cartpage y home. Entonces desde cart_page envia el index y la cadena "cartpage", entonces
+// route recibe eso y lo envia a popular_food_detail o recommended_food_detail. Estas paginas contienen un if dentro de su body 
+// que si reciben la cadena "cartpage" al volver hacia atras (o al cerrar) vuelve al carrito y si recibe "hombre" vuelve al initialPage
+
+
+// 01:40:03

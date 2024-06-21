@@ -4,6 +4,7 @@
 
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/recommened_food_detail.dart';
+import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
 import '../pages/food/popular_food_detail.dart';
@@ -15,21 +16,22 @@ class RouteHelper{
   static const String cartPage ="/cart-page";
 
   static String getInitial()=>'$initial';
-  static String getPopularFood(int pageId)=>'$popularFood?pageId=$pageId';
-  static String getRecommendedFood(int pageId)=>'$recommendedFood?pageId=$pageId';
+  static String getPopularFood(int pageId, String page)=>'$popularFood?pageId=$pageId&page=$page';
+  static String getRecommendedFood(int pageId, String page)=>'$recommendedFood?pageId=$pageId&page=$page';
   static String getCartPage()=>'$cartPage';
 
   static List<GetPage> routes=[
     
     // Mapea la ruta inicial ("/") a MainFoodPage.
-    GetPage(name: initial, page: ()=>MainFoodPage()),
+    GetPage(name: initial, page: ()=>HomePage()),
     
 
     // popularFood: Mapea la ruta de comida popular ("/popular-food") a PopularFoodDetail, 
     // extrayendo el pageId de los parámetros de la ruta y pasándolo al constructor de PopularFoodDetail.
     GetPage(name:popularFood, page:(){
       var pageId=Get.parameters['pageId'];
-      return PopularFoodDetail(pageId:int.parse(pageId!));
+      var page=Get.parameters['page'];
+      return PopularFoodDetail(pageId:int.parse(pageId!), page:page!);
     },
       transition: Transition.fadeIn
     ),
@@ -39,7 +41,8 @@ class RouteHelper{
 
     GetPage(name:recommendedFood, page:(){   
       var pageId=Get.parameters['pageId'];  
-      return RecommendedFoodDetail(pageId:int.parse(pageId!));
+      var page=Get.parameters['page'];
+      return RecommendedFoodDetail(pageId:int.parse(pageId!), page:page!);
     },
     // Se especifica una transición de desvanecimiento (Transition.fadeIn) para las páginas.
       transition: Transition.fadeIn 

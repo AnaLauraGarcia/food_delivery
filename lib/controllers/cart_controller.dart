@@ -96,4 +96,17 @@ class CartController extends GetxController{
       return e.value;
     }).toList();
   }
+
+
+  //Logica para que los productos se multipliquen con la cantidad en el carrito
+  int get totalAmount{
+    var total=0;
+    _items.forEach((key, value){
+      total += value.quantity!*value.price!;
+    });
+    return total;
+
+  }
+
+
 }
