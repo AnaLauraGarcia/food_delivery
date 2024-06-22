@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+  
+  // Este controlador es el que tiene el "chache" del carrito
   Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_){
       return GetBuilder<RecommendedProductController>(builder: (_){

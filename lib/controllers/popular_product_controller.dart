@@ -91,8 +91,13 @@ class PopularProductController extends GetxController {
   // Inicializa el producto en el controlador
   void initProduct(ProductModel product, CartController cart) {
     _cart = cart;
+    // var exist=false;
     var exist = _cart.existInCart(product);
-    _inCartItems = exist ? _cart.getQuantity(product) : 0;
+    // if (exist)  {
+    //   _inCartItems = _cart.getQuantity(product);
+      _inCartItems = exist ? _cart.getQuantity(product) : 0;
+    // }
+    
   }
 
   // Agrega un producto al carrito
