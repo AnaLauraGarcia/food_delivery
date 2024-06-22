@@ -41,3 +41,5 @@
 
 // En el 02:38:22 explica algo sobre como convierte la lista del carrito en 
 // en objetos.. de Json a lista
+
+// 02:57

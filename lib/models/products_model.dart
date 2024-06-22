@@ -71,6 +71,7 @@ class ProductModel {
       "name":this.name,
       "price":this.price,
       "img":this.img,
+      "location": this.location,
       "createdAt":this.createdAt,
       "updatedAt":this.updatedAt,
       "typeId":this.typeId,
