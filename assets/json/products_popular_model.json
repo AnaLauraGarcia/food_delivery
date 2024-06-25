@@ -11,9 +11,9 @@
       "stars": 5,
       "img": "popular1.jpg",
       "location": "Calle Florida 100, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 2,
@@ -23,9 +23,9 @@
       "stars": 5,
       "img": "popular2.jpg",
       "location": "Av. Corrientes 2000, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 6,
@@ -35,9 +35,9 @@
       "stars": 4,
       "img": "popular6.jpg",
       "location": "Calle San Martín 400, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 7,
@@ -47,9 +47,9 @@
       "stars": 4,
       "img": "popular7.jpg",
       "location": "Av. de Mayo 900, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 10,
@@ -59,9 +59,9 @@
       "stars": 4,
       "img": "popular10.jpg",
       "location": "Calle Defensa 700, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 11,
@@ -71,9 +71,9 @@
       "stars": 4,
       "img": "popular11.jpg",
       "location": "Av. 9 de Julio 1000, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 14,
@@ -83,9 +83,9 @@
       "stars": 4,
       "img": "popular14.jpg",
       "location": "Calle Lavalle 800, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 15,
@@ -95,9 +95,9 @@
       "stars": 5,
       "img": "popular15.jpg",
       "location": "Calle Tucumán 900, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 16,
@@ -107,9 +107,9 @@
       "stars": 4,
       "img": "popular16.jpg",
       "location": "Calle Reconquista 500, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 19,
@@ -119,9 +119,9 @@
       "stars": 5,
       "img": "popular19.jpg",
       "location": "Calle Belgrano 600, CABA",
-      "created_at": "2023-11-08 10:33:48",
-      "updated_at": "2023-11-08 10:33:48",
-      "type_id": 2
+      "createdAt": "2023-11-08 10:33:48",
+      "updatedAt": "2023-11-08 10:33:48",
+      "typeId": 2
     },
     {
       "id": 20,
@@ -131,9 +131,9 @@
       "stars": 5,
       "img": "popular20.jpg",
       "location": "Av. Corrientes 1234, CABA",
-      "created_at": "2024-06-20 15:00:00",
-      "updated_at": "2024-06-20 15:00:00",
-      "type_id": 2
+      "createdAt": "2024-06-20 15:00:00",
+      "updatedAt": "2024-06-20 15:00:00",
+      "typeId": 2
     }
   ]
 }
