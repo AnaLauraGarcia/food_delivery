@@ -41,6 +41,7 @@ class UserDatabase {
   }
 
 
+
   Future<SignUpBody?> readUser(int id) async {
     final db = await instance.database;
     final maps = await db.query(

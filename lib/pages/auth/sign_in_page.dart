@@ -39,6 +39,7 @@ class SignInPage extends StatelessWidget {
           Get.to(HomePage());
           await UserDatabase.instance.showDatabaseContents();
         } else {
+          await UserDatabase.instance.showDatabaseContents();
           showCustomSnackBar("Credenciales incorrectas", title: "Error");
         }
       }
