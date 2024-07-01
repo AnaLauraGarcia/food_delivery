@@ -13,6 +13,7 @@ class CartRepo{
   List<String> cartHistory=[];
 
   void addToCartList(List<CartModel> cartList){
+    // PARA ELIMINAR EL HISTORIAL DEL CARRITO
     // sharedPreferences.remove(AppConstants.CART_LIST);// Para borrar el historial!
     // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     var time = DateTime.now().toString();

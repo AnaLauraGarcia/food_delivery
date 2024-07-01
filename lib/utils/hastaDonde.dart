@@ -53,3 +53,11 @@
 // SIGN IN : 07:57:00
 
 // 03:42:34
+
+// PARA ELIMINAR EL HISTORIAL DEL CARRITO cart_repo 
+
+// Cierra el historial del carrito en 06:08:05
+
+// Continuo en 06:56:09
+
+// -------->  Color(0xFFFFFDF6),

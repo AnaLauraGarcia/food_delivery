@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/pages/auth/sign_in_page.dart';
+import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:get/get.dart';
@@ -44,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
     Timer(
       const Duration(seconds: 3),
-      () => Get.offNamed(RouteHelper.getInitial())
+      () => Get.to(SignInPage())
     );
   }
 
