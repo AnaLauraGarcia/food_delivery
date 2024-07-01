@@ -40,10 +40,21 @@ class UserDatabase {
     await db.insert('user', user.toMap());
   }
 
-  Future<List<SignUpBody>> readAllUsers() async {
-    final db = await database;
-    final result = await db.query('user');
-    return result.map((map) => SignUpBody.fromMap(map)).toList();
+
+  Future<SignUpBody?> readUser(int id) async {
+    final db = await instance.database;
+    final maps = await db.query(
+      'user',
+      columns: ['id', 'name', 'phone', 'email', 'password'],
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    if (maps.isNotEmpty) {
+      return SignUpBody.fromMap(maps.first);
+    } else {
+      return null;
+    }
   }
 
   Future<int> updateUser(SignUpBody user) async {
@@ -65,15 +76,16 @@ class UserDatabase {
     );
   }
 
-  Future<bool> loginUser(String email, String password) async {
+  Future<int?> loginUser(String email, String password) async {
     final db = await database;
-    var result = await db.query(
-      'user',
-      where: 'email = ? AND password = ?',
-      whereArgs: [email, password],
-    );
+    final result = await db.query('user', where: 'email = ? AND password = ?', whereArgs: [email, password]);
 
-    return result.isNotEmpty;
+    if (result.isNotEmpty) {
+      return result.first['id'] as int;  
+    } else {
+      return null;
+    }
+
   }
 
   Future<void> showDatabaseContents() async {

@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/bbhh/user_database.dart';
 import 'package:food_delivery/pages/auth/sign_in_page.dart';
+import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:get/get.dart';
 import 'package:food_delivery/base/show_custom_snackbar.dart';
@@ -55,8 +56,8 @@ class SignUpPage extends StatelessWidget {
         // Insertar el usuario en la base de datos
         await UserDatabase.instance.createUser(signUpBody);
         showCustomSnackBar("Usuario registrado exitosamente", title: "Éxito", isError: false);
-        // También puedes navegar a otra pantalla o limpiar los campos de texto aquí
-        Get.toNamed(RouteHelper.getCartPage());
+
+        Get.to(HomePage());
       }
     }
 
