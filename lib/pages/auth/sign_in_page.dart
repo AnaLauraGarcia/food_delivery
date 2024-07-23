@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/bbhh/preferences_service.dart';
 import 'package:food_delivery/bbhh/user_database.dart';
 import 'package:food_delivery/pages/home/home_page.dart';
-import 'package:food_delivery/routes/route_helper.dart';
-import 'package:get/get.dart';
+import 'package:food_delivery/pages/admin/admin_page.dart'; // Importa la página de administración
 import 'package:food_delivery/pages/auth/sign_up_page.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/app_text_field.dart';
 import 'package:food_delivery/widgets/big_text.dart';
-import 'package:food_delivery/base/show_custom_snackbar.dart';  // Importa tu servicio
+import 'package:food_delivery/base/show_custom_snackbar.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';  // Importa tu servicio
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -35,8 +36,19 @@ class SignInPage extends StatelessWidget {
         if (userId != null) {
           // Guarda el ID del usuario usando SharedPreferences
           await _preferencesService.saveUserId(userId);
-          // Navega a la pantalla de inicio o realiza la acción deseada cuando el inicio de sesión sea exitoso
-          Get.to(HomePage());
+
+          // Obtén el rol del usuario
+          final user = await UserDatabase.instance.readUser(userId);
+          if (user != null) {
+            if (user.role == 'admin') {
+              // Navega a la página de administración para admin
+              Get.to(() => AdminPage());
+            } else {
+              // Navega a la página de inicio para cliente
+              Get.to(() => HomePage());
+            }
+          }
+
           await UserDatabase.instance.showDatabaseContents();
         } else {
           await UserDatabase.instance.showDatabaseContents();
