@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
+import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:food_delivery/pages/admin/list_user_page.dart';
+import 'package:food_delivery/pages/auth/sign_in_page.dart';
+import 'package:food_delivery/bbhh/preferences_service.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({Key? key}) : super(key: key);
@@ -15,6 +18,7 @@ class AdminPage extends StatefulWidget {
 
 class _AdminPageState extends State<AdminPage> {
   late PersistentTabController _controller;
+  final PreferencesService _preferencesService = PreferencesService(); // Instancia del servicio de preferencias
 
   @override
   void initState() {
@@ -24,10 +28,10 @@ class _AdminPageState extends State<AdminPage> {
 
   List<Widget> _buildScreens() {
     return [
-      _buildAdminScreen(), // Pantalla de administración con estadísticas
-      UsersPage(), // Página de usuarios
-      UsersPage(), // Página de usuarios
-      UsersPage(), // Página de usuari
+      _buildAdminScreen(), 
+      Container(), 
+      UsersPage(),
+      Container(), 
     ];
   }
 
@@ -46,14 +50,14 @@ class _AdminPageState extends State<AdminPage> {
         inactiveColorPrimary: AppColors.mainColor,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.settings),
-        title: ("Configuración"),
+        icon: Icon(CupertinoIcons.person),
+        title: ("Usuarios"),
         activeColorPrimary: CupertinoColors.systemGrey,
         inactiveColorPrimary: AppColors.mainColor,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
-        title: ("Usuarios"),
+        icon: Icon(CupertinoIcons.power),
+        title: ("Deslogearte"),
         activeColorPrimary: CupertinoColors.systemGrey,
         inactiveColorPrimary: AppColors.mainColor,
       ),
@@ -89,6 +93,7 @@ class _AdminPageState extends State<AdminPage> {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle: NavBarStyle.style3,
+      onItemSelected: _handleNavBarSelection, // Maneja la selección de ítems
     );
   }
 
@@ -168,7 +173,8 @@ class _AdminPageState extends State<AdminPage> {
       ),
     );
   }
-Widget _buildSectionTitle(String title) {
+
+  Widget _buildSectionTitle(String title) {
     return BigText(
       text: title,
       size: Dimensions.font20,
@@ -186,5 +192,48 @@ Widget _buildSectionTitle(String title) {
     return Column(
       children: news.map((newsItem) => ListTile(title: Text(newsItem))).toList(),
     );
+  }
+
+  // Maneja la acción de deslogueo
+  void _handleNavBarSelection(int index) {
+    if (index == 3) { // Índice de "Deslogearte"
+      _showLogoutConfirmationDialog();
+    } else {
+      setState(() {
+        _controller.index = index;
+      });
+    }
+  }
+
+  void _showLogoutConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmar Cierre de Sesión'),
+          content: Text('¿Estás seguro de que quieres cerrar sesión?'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Cierra el diálogo
+              },
+            ),
+            TextButton(
+              child: Text('Sí'),
+              onPressed: () async {
+                Navigator.of(context).pop(); // Cierra el diálogo
+                await _logout(); // Llama al método de cierre de sesión
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _logout() async {
+    await _preferencesService.removeUserId(); // Elimina el ID del usuario
+    Get.offAll(() => SignInPage()); // Redirige a la página de inicio de sesión
   }
 }

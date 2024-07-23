@@ -12,4 +12,9 @@ class PreferencesService {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getInt(_userIdKey);
   }
+
+  Future<void> removeUserId() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_userIdKey);
+  }
 }
