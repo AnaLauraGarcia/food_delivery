@@ -51,6 +51,8 @@ class SignUpPage extends StatelessWidget {
           phone: phone,
           email: email,
           password: password,
+          role: 'client',
+
         );
 
         // Insertar el usuario en la base de datos

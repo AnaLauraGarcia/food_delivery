@@ -4,6 +4,7 @@ class SignUpBody {
   String phone;
   String email;
   String password;
+  String role; 
 
   SignUpBody({
     this.id,
@@ -11,6 +12,7 @@ class SignUpBody {
     required this.phone,
     required this.email,
     required this.password,
+    this.role = 'client', 
   });
 
   factory SignUpBody.fromMap(Map<String, dynamic> map) {
@@ -20,6 +22,7 @@ class SignUpBody {
       phone: map['phone'] as String,
       email: map['email'] as String,
       password: map['password'] as String,
+      role: map['role'] as String, 
     );
   }
 
@@ -30,6 +33,7 @@ class SignUpBody {
       'phone': phone,
       'email': email,
       'password': password,
+      'role': role, 
     };
   }
 }

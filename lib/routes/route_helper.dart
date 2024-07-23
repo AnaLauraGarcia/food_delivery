@@ -8,13 +8,15 @@ import 'package:food_delivery/pages/auth/sign_up_page.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/recommened_food_detail.dart';
 import 'package:food_delivery/pages/home/home_page.dart';
-import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
 import '../pages/food/popular_food_detail.dart';
+import 'package:food_delivery/pages/admin/admin_page.dart';
+
 
 class RouteHelper{
   static const String splashPage ="/splash-page";
+  static const String adminPage = '/admin';
   static const String initial = "/";
   static const String signInPage ="/sign-in-page";
   static const String signUpPage ="/sign-up-page";
@@ -24,6 +26,7 @@ class RouteHelper{
   static const String accountPage ="/account-page";
 
   static String getSplashPage()=>'$splashPage';
+  
   static String getSignInPage()=>'$signInPage';
   static String getSignUpInPage()=>'$signUpPage';
   static String getInitial()=>'$initial';
@@ -35,6 +38,8 @@ class RouteHelper{
   static List<GetPage> routes=[
 
     GetPage(name: splashPage, page: ()=>SplashScreen()),
+
+    GetPage(name: adminPage, page: () => AdminPage()),
 
     // Mapea la ruta inicial ("/") a MainFoodPage.
     GetPage(name: initial, page: ()=>HomePage()),
