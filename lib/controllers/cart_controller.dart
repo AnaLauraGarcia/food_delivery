@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 
 class CartController extends GetxController{
   final CartRepo cartRepo;
-  CartController({required this.cartRepo});
+  final int userId; 
+  CartController({required this.cartRepo, required this.userId});
   // Acá tenemos la comida guardada que eligimos.
   Map<int, CartModel> _items={};
   Map<int, CartModel> get items=>_items;
@@ -23,6 +24,7 @@ class CartController extends GetxController{
       _items.update(product.id!, (value){
         totalQuantity = value.quantity!+quantity;
         return CartModel(
+          userId: userId, 
           id: value.id, 
           name: value.name, 
           price: value.price,
@@ -43,6 +45,7 @@ class CartController extends GetxController{
         print("length of the item is " + _items.length.toString());
         _items.putIfAbsent(product.id!, () { 
           return CartModel(
+            userId: userId, 
             id: product.id, 
             name: product.name, 
             price: product.price,

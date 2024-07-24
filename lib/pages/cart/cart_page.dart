@@ -3,6 +3,7 @@ import 'package:food_delivery/base/no_data_page.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/data/repository/cart_repo.dart';
 import 'package:food_delivery/pages/home/home_page.dart';
 import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/colors.dart';
@@ -13,10 +14,19 @@ import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+
+  final int? userId;
+  final CartRepo cartRepo; 
+
+  const CartPage({
+    Key? key, 
+    required this.userId, 
+    required this.cartRepo // Asegúrate de que este parámetro esté aquí
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Color(0xFFFFFDF6),
       body: Stack(

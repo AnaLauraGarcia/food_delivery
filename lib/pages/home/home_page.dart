@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/bbhh/preferences_service.dart';
+import 'package:food_delivery/data/repository/cart_repo.dart';
 import 'package:food_delivery/pages/account/account_page.dart';
 import 'package:food_delivery/pages/auth/sign_in_page.dart';
-
 import 'package:food_delivery/pages/cart/cart_history.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/home/main_food_page.dart';
 import 'package:food_delivery/utils/colors.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late PersistentTabController _controller;
-  final PreferencesService _preferencesService = PreferencesService(); 
+  final PreferencesService _preferencesService = PreferencesService();
 
   @override
   void initState() {
@@ -27,13 +29,34 @@ class _HomePageState extends State<HomePage> {
     _controller = PersistentTabController(initialIndex: 0);
   }
 
+  // Definir el método _getUserId aquí
+  Future<int?> _getUserId() async {
+    return await _preferencesService.getUserId();
+  }
+
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
       CartHistory(),
-      CartPage(),
+      FutureBuilder<int?>(
+        future: _getUserId(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            final userId = snapshot.data;
+            final cartRepo = Get.find<CartRepo>();
+            return CartPage(
+              userId: userId,
+              cartRepo: cartRepo,
+            );
+          }
+        },
+      ),
       AccountPage(),
-      Container(), 
+      Container(),
     ];
   }
 
@@ -101,7 +124,7 @@ class _HomePageState extends State<HomePage> {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle: NavBarStyle.style3,
-      onItemSelected: _handleNavBarSelection, 
+      onItemSelected: _handleNavBarSelection,
     );
   }
 
@@ -126,7 +149,7 @@ class _HomePageState extends State<HomePage> {
             TextButton(
               child: Text('No'),
               onPressed: () {
-                Navigator.of(context).pop(); 
+                Navigator.of(context).pop();
               },
             ),
             TextButton(
@@ -143,9 +166,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _logout() async {
-    await _preferencesService.removeUserId(); 
+    await _preferencesService.removeUserId();
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => SignInPage()), 
+      MaterialPageRoute(builder: (context) => SignInPage()),
       (Route<dynamic> route) => false,
     );
   }
