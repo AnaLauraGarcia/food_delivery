@@ -18,14 +18,7 @@ class CartRepo{
     // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     var time = DateTime.now().toString();
     cart=[];
-/* 
-    02:13:19 Convert objects to string because sharedPreferences only accepts string
-*/
-    // cartList.forEach((element) {
-    //   return cart.add(jsonEncode(element)); // Convierte en un objeto
-    // });
 
-  // Forma Abreviada:
     cartList.forEach((element){
       element.time = time;
       return cart.add(jsonEncode(element));
@@ -33,7 +26,6 @@ class CartRepo{
 
 
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    //print(sharedPreferences.getStringList(AppConstants.CART_LIST));
     getCartList();
   }
 
@@ -46,15 +38,6 @@ class CartRepo{
     
     List<CartModel> cartList=[];
 
-    // carts.forEach((element) {
-
-    //   // 02:26:28
-    //   cartList.add(CartModel.fromJson(jsonDecode(element)));
-      
-    // });
-    
-
-    // Forma abreviada
     carts.forEach((element)=>cartList.add(CartModel.fromJson(jsonDecode(element))));
 
     return cartList;
