@@ -39,12 +39,14 @@ class RecommendedFoodDetail extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     print('Page: $page'); // Imprime el valor de page
-
-                    if (page=="cartpage"){
-                      Get.toNamed(RouteHelper.getCartPage());
-                    }else{
-                      Get.toNamed(RouteHelper.getInitial());
+                    String route;
+                    if (page == "cartpage") {
+                      route = RouteHelper.getCartPage();
+                    } else {
+                      route = RouteHelper.getInitial();
                     }
+                    print('Navigating to: $route');
+                    Get.toNamed(route);
                   },
                   child: AppIcon(icon: Icons.clear),
                 ),

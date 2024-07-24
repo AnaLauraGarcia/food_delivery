@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
 
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
@@ -22,18 +23,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   
-  // Este controlador es el que tiene el "chache" del carrito
+  // Este controlador es el que tiene el "cache" del carrito
   Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_){
       return GetBuilder<RecommendedProductController>(builder: (_){
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-           home: SplashScreen(),
+           //home: SplashScreen(),
           // home: AdminPage(),
           //home: MainFoodPage(),
           // home: SplashScreen(),
-          // initialRoute: RouteHelper.getSplashPage(),
+           initialRoute: RouteHelper.getSplashPage(),
           getPages: RouteHelper.routes,
         );
       });

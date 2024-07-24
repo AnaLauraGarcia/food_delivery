@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late PersistentTabController _controller;
-  final PreferencesService _preferencesService = PreferencesService(); // Instancia del servicio de preferencias
+  final PreferencesService _preferencesService = PreferencesService(); 
 
   @override
   void initState() {
@@ -101,12 +101,12 @@ class _HomePageState extends State<HomePage> {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle: NavBarStyle.style3,
-      onItemSelected: _handleNavBarSelection, // Maneja la selección de ítems
+      onItemSelected: _handleNavBarSelection, 
     );
   }
 
   void _handleNavBarSelection(int index) {
-    if (index == 4) { // Índice de "Deslogearte"
+    if (index == 4) {
       _showLogoutConfirmationDialog();
     } else {
       setState(() {
@@ -126,14 +126,14 @@ class _HomePageState extends State<HomePage> {
             TextButton(
               child: Text('No'),
               onPressed: () {
-                Navigator.of(context).pop(); // Cierra el diálogo
+                Navigator.of(context).pop(); 
               },
             ),
             TextButton(
               child: Text('Sí'),
               onPressed: () async {
-                Navigator.of(context).pop(); // Cierra el diálogo
-                await _logout(); // Llama al método de cierre de sesión
+                Navigator.of(context).pop();
+                await _logout();
               },
             ),
           ],
@@ -143,9 +143,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _logout() async {
-    await _preferencesService.removeUserId(); // Elimina el ID del usuario
+    await _preferencesService.removeUserId(); 
     Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (context) => SignInPage()), // Redirige a la página de inicio de sesión
+      MaterialPageRoute(builder: (context) => SignInPage()), 
       (Route<dynamic> route) => false,
     );
   }
