@@ -97,9 +97,9 @@ class CartController extends GetxController {
   }
 
   void addToHistory() {
-    cartRepo.addToCartHistoryList(userId);
-    clear();
-  }
+  cartRepo.addToCartList(getItems, userId); // Asegúrate de pasar el carrito actual
+  clear();
+}
 
   void clear() {
     _items = {};

@@ -151,22 +151,13 @@ class CartHistory extends StatelessWidget {
                                                       onTap: () {
                                                         var orderTime = cartOrderTimeToList();
                                                         Map<int, CartModel> moreOrder = {};
-                                                        for (int j = 0;
-                                                            j < getCartHistoryList.length;
-                                                            j++) {
-                                                          if (getCartHistoryList[j].time ==
-                                                              orderTime[i]) {
-                                                            moreOrder.putIfAbsent(
-                                                                getCartHistoryList[j].id!,
-                                                                () => CartModel.fromJson(jsonDecode(
-                                                                    jsonEncode(
-                                                                        getCartHistoryList[j]))));
+                                                        for (int j = 0; j < getCartHistoryList.length; j++) {
+                                                          if (getCartHistoryList[j].time == orderTime[i]) {
+                                                            moreOrder.putIfAbsent(getCartHistoryList[j].id!,
+                                                                () => CartModel.fromJson(jsonDecode(jsonEncode(getCartHistoryList[j]))));
                                                           }
                                                         }
-                                                        Get.find<CartController>().setItems =
-                                                            moreOrder;
-                                                        Get.find<CartController>()
-                                                            .addToCartList();
+                                                        Get.find<CartController>().setItems = moreOrder; // Actualiza el carrito con los elementos del historial
                                                         Get.toNamed(RouteHelper.getCartPage());
                                                       },
                                                       child: Container(
@@ -174,32 +165,29 @@ class CartHistory extends StatelessWidget {
                                                             horizontal: Dimensions.width10,
                                                             vertical: Dimensions.height10 / 2),
                                                         decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.circular(
-                                                              Dimensions.radius15 / 3),
-                                                          border: Border.all(
-                                                              width: 1, color: AppColors.mainColor),
+                                                          borderRadius: BorderRadius.circular(Dimensions.radius15 / 3),
+                                                          border: Border.all(width: 1, color: AppColors.mainColor),
                                                         ),
-                                                        child: SmallText(
-                                                            text: "one more",
-                                                            color: AppColors.mainColor),
-                                                      ))
-                                                ]))
-                                      ],
-                                    ),
-                                  ]),
-                            )
-                        ],
-                      ),
-                    ),
-                  ))
-                : SizedBox(
-                    height: MediaQuery.of(context).size.height / 1.5,
-                    child: const Center(
-                      child: NoDataPage(
-                          text: "No compraste nada todavía",
-                          imgPath: "assets/image/empty_box.png"),
-                    ));
-          }),
+                                                        child: SmallText(text: "one more", color: AppColors.mainColor),
+                                                      ),
+                                                    )
+                                                                                                    ]))
+                                                                                          ],
+                                                                                        ),
+                                                                                      ]),
+                                                                                )
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ))
+                                                                    : SizedBox(
+                                                                        height: MediaQuery.of(context).size.height / 1.5,
+                                                                        child: const Center(
+                                                                          child: NoDataPage(
+                                                                              text: "No compraste nada todavía",
+                                                                              imgPath: "assets/image/empty_box.png"),
+                                                                        ));
+                                                              }),
         ],
       ),
     );
