@@ -10,6 +10,8 @@ class CartController extends GetxController{
   final CartRepo cartRepo;
   final int userId; 
   CartController({required this.cartRepo, required this.userId});
+
+  
   // Acá tenemos la comida guardada que eligimos.
   Map<int, CartModel> _items={};
   Map<int, CartModel> get items=>_items;
@@ -141,6 +143,11 @@ class CartController extends GetxController{
 
   List<CartModel> getCartHistoryList() {
     return cartRepo.getCartHistoryList();
+  }
+
+  List<CartModel> getCartHistoryListByUserId(int userId) {
+    List<CartModel> allHistory = cartRepo.getCartHistoryList(); // Obtén toda la historia
+    return allHistory.where((cart) => cart.userId == userId).toList(); // Filtra por userId
   }
 
   set setItems(Map<int, CartModel> setItems){

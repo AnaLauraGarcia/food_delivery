@@ -37,26 +37,45 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
-      CartHistory(),
       FutureBuilder<int?>(
-        future: _getUserId(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
+      future: _getUserId(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          final userId = snapshot.data;
+          if (userId != null) {
+            return CartHistory(userId: userId); // Pasa el userId aquí
           } else {
-            final userId = snapshot.data;
-            final cartRepo = Get.find<CartRepo>();
-            return CartPage(
-              userId: userId,
-              cartRepo: cartRepo,
-            );
+            return Center(child: Text('No user ID found'));
           }
-        },
-      ),
-      AccountPage(),
-      Container(),
+        } else {
+          return Center(child: Text('No user ID found'));
+        }
+      },
+    ),
+    FutureBuilder<int?>(
+      future: _getUserId(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          final userId = snapshot.data;
+          return CartPage(
+            userId: userId ?? 0, // Usa un valor por defecto si es nulo
+            cartRepo: Get.find<CartRepo>(),
+          );
+        } else {
+          return Center(child: Text('No user ID found'));
+        }
+      },
+    ),
+    AccountPage(),
+    Container(),
     ];
   }
 

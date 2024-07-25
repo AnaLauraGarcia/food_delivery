@@ -14,18 +14,19 @@ import 'package:food_delivery/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 class CartPage extends StatelessWidget {
-
-  final int? userId;
-  final CartRepo cartRepo; 
+  final int userId; // Se hace no nulo, ya que no se permite ser null
+  final CartRepo cartRepo;
 
   const CartPage({
-    Key? key, 
-    required this.userId, 
-    required this.cartRepo // Asegúrate de que este parámetro esté aquí
+    Key? key,
+    required this.userId, // Se hace requerido
+    required this.cartRepo,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Se crea una instancia del controlador sin llamar a `setUserId` ya que `userId` se pasa directamente
+    final CartController cartController = Get.put(CartController(cartRepo: cartRepo, userId: userId));
 
     return Scaffold(
       backgroundColor: Color(0xFFFFFDF6),
@@ -61,7 +62,6 @@ class CartPage extends StatelessWidget {
                     iconSize: Dimensions.iconSize24
                   ),
                 ),
-                // Evita redirigir a la misma página
                 GestureDetector(
                   onTap: () {
                     // Aquí podrías mostrar un mensaje si lo deseas
@@ -76,8 +76,8 @@ class CartPage extends StatelessWidget {
               ]
             ),
           ),
-          GetBuilder<CartController>(builder: (_cartController) {
-            return _cartController.getItems.length > 0
+          GetBuilder<CartController>(builder: (cartController) {
+            return cartController.getItems.length > 0
               ? Positioned(
                   top: Dimensions.height20 * 5,
                   left: Dimensions.width20,

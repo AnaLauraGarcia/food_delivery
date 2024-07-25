@@ -18,14 +18,7 @@ class CartRepo{
     // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     var time = DateTime.now().toString();
     cart=[];
-/* 
-    02:13:19 Convert objects to string because sharedPreferences only accepts string
-*/
-    // cartList.forEach((element) {
-    //   return cart.add(jsonEncode(element)); // Convierte en un objeto
-    // });
 
-  // Forma Abreviada:
     cartList.forEach((element){
       element.time = time;
       return cart.add(jsonEncode(element));
@@ -46,15 +39,6 @@ class CartRepo{
     
     List<CartModel> cartList=[];
 
-    // carts.forEach((element) {
-
-    //   // 02:26:28
-    //   cartList.add(CartModel.fromJson(jsonDecode(element)));
-      
-    // });
-    
-
-    // Forma abreviada
     carts.forEach((element)=>cartList.add(CartModel.fromJson(jsonDecode(element))));
 
     return cartList;
@@ -65,10 +49,18 @@ class CartRepo{
       cartHistory=[];
       cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
+
+
+
     List<CartModel> cartListHistory=[];
     cartHistory.forEach((element) => cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
     return cartListHistory;
   }
+
+  List<CartModel> getCartHistoryListByUserId(int userId) {
+  List<CartModel> cartHistoryList = getCartHistoryList(); // Llama a getCartHistoryList para obtener la lista
+  return cartHistoryList.where((cart) => cart.userId == userId).toList();
+}
   
   void addToCartHistoryList(){
     if(sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)){

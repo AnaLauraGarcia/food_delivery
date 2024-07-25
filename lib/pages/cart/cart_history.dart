@@ -18,13 +18,15 @@ import 'package:intl/intl.dart';
 
 
 class CartHistory extends StatelessWidget {
-  const CartHistory({Key? key}) : super(key: key);
+  final int userId;
+
+  const CartHistory({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     
-    var getCartHistoryList = Get.find<CartController>()   
-      .getCartHistoryList().reversed.toList();
+        var getCartHistoryList = Get.find<CartController>().getCartHistoryListByUserId(userId).reversed.toList();
+
 
     Map<String, int> cartItemsPerOrder = Map();
 
