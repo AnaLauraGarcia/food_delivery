@@ -1,32 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/bbhh/preferences_service.dart';
 import 'package:food_delivery/data/repository/cart_repo.dart';
 import 'package:food_delivery/models/cart_model.dart';
 import 'package:food_delivery/models/products_model.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
 
-
 class CartController extends GetxController {
   final CartRepo cartRepo;
-  late int userId; // Usar late para inicializar en init
+  final int userId;
 
-  CartController({required this.cartRepo});
+  CartController({required this.cartRepo, required this.userId});
 
-  // Acá tenemos la comida guardada que eligimos.
   Map<int, CartModel> _items = {};
   Map<int, CartModel> get items => _items;
 
-  // Solo para almacenamiento y pref.comp.
   List<CartModel> storageItems = [];
-
-  @override
-  void onInit() async {
-    super.onInit();
-    // Recuperar el userId de SharedPreferences
-    userId = await PreferencesService().getUserId() ?? 0; // Usa 0 si es null
-    setCart = cartRepo.getCartList();
-  }
 
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
@@ -51,7 +39,6 @@ class CartController extends GetxController {
       }
     } else {
       if (quantity > 0) {
-        print("length of the item is " + _items.length.toString());
         _items.putIfAbsent(product.id!, () {
           return CartModel(
             userId: userId,
@@ -66,15 +53,13 @@ class CartController extends GetxController {
           );
         });
       } else {
-        Get.snackbar(
-          "Item count",
-          "You should at least add an item in the cart!",
+        Get.snackbar("Item count", "You should at least add an item in the cart!",
           backgroundColor: AppColors.mainColor,
           colorText: Colors.white,
         );
       }
     }
-    addToCartList(); // Actualiza la lista en el repositorio
+    cartRepo.addToCartList(getItems, userId);
     update();
   }
 
@@ -83,55 +68,36 @@ class CartController extends GetxController {
   }
 
   int getQuantity(ProductModel product) {
-    var quantity = 0;
-    if (_items.containsKey(product.id)) {
-      quantity = _items[product.id]!.quantity!;
-    }
-    return quantity;
+    return _items[product.id]?.quantity ?? 0;
   }
 
   int get totalItems {
-    var totalQuantity = 0;
-    _items.forEach((key, value) {
-      totalQuantity += value.quantity!;
-    });
-    return totalQuantity;
+    return _items.values.fold(0, (total, item) => total + item.quantity!);
   }
 
-  // Lista de comida que devuelve una lista de objetos tipo CartModel --> Lo que vemos del carrito
   List<CartModel> get getItems {
-    return _items.entries.map((e) {
-      return e.value;
-    }).toList();
+    return _items.values.toList();
   }
 
-  // Logica para que los productos se multipliquen con la cantidad en el carrito
   int get totalAmount {
-    var total = 0;
-    _items.forEach((key, value) {
-      total += value.quantity! * value.price!;
-    });
-    return total;
+    return _items.values.fold(0, (total, item) => total + item.quantity! * item.price!);
   }
 
   List<CartModel> getCartData() {
-    setCart = cartRepo.getCartList();
+    setCart = cartRepo.getCartList(userId);
     return storageItems;
   }
 
   set setCart(List<CartModel> items) {
     storageItems = items;
-    //print("Length of cart items " + storageItems.length.toString());
-    _items = {};
-    for (int i = 0; i < storageItems.length; i++) {
-      if (storageItems[i].userId == userId) { // Filtra por userId
-        _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
-      }
+    _items.clear();
+    for (var item in storageItems) {
+      _items[item.product!.id!] = item;
     }
   }
 
   void addToHistory() {
-    cartRepo.addToCartHistoryList();
+    cartRepo.addToCartHistoryList(userId);
     clear();
   }
 
@@ -141,17 +107,10 @@ class CartController extends GetxController {
   }
 
   List<CartModel> getCartHistoryList() {
-    List<CartModel> allHistory = cartRepo.getCartHistoryList();
-    // Filtrar por userId
-    return allHistory.where((item) => item.userId == userId).toList();
+    return cartRepo.getCartHistoryList(userId);
   }
 
   set setItems(Map<int, CartModel> setItems) {
-    _items = {};
     _items = setItems;
-  }
-
-  void addToCartList() {
-    cartRepo.addToCartList(getItems);
   }
 }
