@@ -1,78 +1,66 @@
 import 'dart:convert';
 import 'package:food_delivery/models/cart_model.dart';
-import 'package:food_delivery/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// 02:08:49
-
-class CartRepo{
+class CartRepo {
   final SharedPreferences sharedPreferences;
+
   CartRepo({required this.sharedPreferences});
 
-  List<String> cart=[];
-  List<String> cartHistory=[];
+  String _getCartKey(int userId) => 'cart_$userId';
+  String _getCartHistoryKey(int userId) => 'cart_history_$userId';
 
-  void addToCartList(List<CartModel> cartList){
-    // PARA ELIMINAR EL HISTORIAL DEL CARRITO
-    // sharedPreferences.remove(AppConstants.CART_LIST);// Para borrar el historial!
-    // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+  void addToCartList(List<CartModel> cartList, int userId) {
     var time = DateTime.now().toString();
-    cart=[];
+    List<String> cart = [];
 
-    cartList.forEach((element){
-      element.time = time;
-      return cart.add(jsonEncode(element));
-      });
+    cartList.forEach((element) {
+      if (element.userId == userId) {
+        element.time = time;
+        cart.add(jsonEncode(element));
+      }
+    });
 
+    // Guarda el carrito actual
+    sharedPreferences.setStringList(_getCartKey(userId), cart);
 
-    sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    getCartList();
+    // Añadir al historial del carrito
+    List<String> cartHistory = getCartHistoryList(userId).map((e) => jsonEncode(e)).toList();
+    cart.forEach((item) {
+      cartHistory.add(item);
+    });
+    sharedPreferences.setStringList(_getCartHistoryKey(userId), cartHistory);
   }
 
-  List<CartModel> getCartList() {
-    List<String> carts=[];
-    if(sharedPreferences.containsKey(AppConstants.CART_LIST)) {
-      carts = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      print("inside getCartList"+carts.toString());
+  List<CartModel> getCartList(int userId) {
+    List<String> carts = [];
+    if (sharedPreferences.containsKey(_getCartKey(userId))) {
+      carts = sharedPreferences.getStringList(_getCartKey(userId))!;
     }
-    
-    List<CartModel> cartList=[];
 
-    carts.forEach((element)=>cartList.add(CartModel.fromJson(jsonDecode(element))));
-
+    List<CartModel> cartList = [];
+    for (var cartString in carts) {
+      var cart = CartModel.fromJson(jsonDecode(cartString));
+      if (cart.userId == userId) {
+        cartList.add(cart);
+      }
+    }
     return cartList;
   }
 
-  List<CartModel> getCartHistoryList(){
-    if(sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)){
-      cartHistory=[];
-      cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
+  List<CartModel> getCartHistoryList(int userId) {
+    List<String> cartHistory = [];
+    if (sharedPreferences.containsKey(_getCartHistoryKey(userId))) {
+      cartHistory = sharedPreferences.getStringList(_getCartHistoryKey(userId))!;
     }
-    List<CartModel> cartListHistory=[];
+
+    List<CartModel> cartListHistory = [];
     cartHistory.forEach((element) => cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
+
     return cartListHistory;
   }
-  
-  void addToCartHistoryList(){
-    if(sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)){
-      cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
-    }
-    for(int i=0; i<cart.length; i++){
-      print("history list"+cart[i]);
-      cartHistory.add(cart[i]);
-    }
-    removeCart();
-    sharedPreferences.setStringList(AppConstants.CART_HISTORY_LIST,cartHistory);
-    print("The length of history list is "+getCartHistoryList().length.toString());
 
-    for(int i=0; i<getCartHistoryList().length; i++){
-      print("The time for the order is "+getCartHistoryList()[i].time.toString());
-
-    }
-  }
-
-  void removeCart(){
-    cart=[];
-    sharedPreferences.remove(AppConstants.CART_LIST);// Para borrar el historial!
+  void removeCart(int userId) {
+    sharedPreferences.remove(_getCartKey(userId));
   }
 }

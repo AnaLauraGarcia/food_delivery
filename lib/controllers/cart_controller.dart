@@ -59,7 +59,7 @@ class CartController extends GetxController {
         );
       }
     }
-    cartRepo.addToCartList(getItems);
+    cartRepo.addToCartList(getItems, userId);
     update();
   }
 
@@ -84,19 +84,20 @@ class CartController extends GetxController {
   }
 
   List<CartModel> getCartData() {
-    setCart = cartRepo.getCartList();
+    setCart = cartRepo.getCartList(userId);
     return storageItems;
   }
 
   set setCart(List<CartModel> items) {
     storageItems = items;
+    _items.clear();
     for (var item in storageItems) {
       _items[item.product!.id!] = item;
     }
   }
 
   void addToHistory() {
-    cartRepo.addToCartHistoryList();
+    cartRepo.addToCartHistoryList(userId);
     clear();
   }
 
@@ -106,14 +107,10 @@ class CartController extends GetxController {
   }
 
   List<CartModel> getCartHistoryList() {
-    return cartRepo.getCartHistoryList();
+    return cartRepo.getCartHistoryList(userId);
   }
 
   set setItems(Map<int, CartModel> setItems) {
     _items = setItems;
-  }
-
-  void addToCartList() {
-    cartRepo.addToCartList(getItems);
   }
 }
