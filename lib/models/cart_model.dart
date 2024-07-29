@@ -48,4 +48,30 @@ class CartModel {
       'product': product!.toJson(),
     };
   }
+
+
+  CartModel copyWith({
+    int? userId,
+    int? id,
+    String? name,
+    int? price,
+    String? img,
+    int? quantity,
+    bool? isExist,
+    String? time,
+    ProductModel? product,
+  }) {
+    return CartModel(
+      userId: userId ?? this.userId,
+      id: id ?? this.id,
+      name: name ?? this.name,
+      price: price ?? this.price,
+      img: img ?? this.img,
+      quantity: quantity ?? this.quantity,
+      isExist: isExist ?? this.isExist,
+      time: time ?? this.time,
+      product: product ?? this.product,
+    );
+  }
 }
+

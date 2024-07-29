@@ -177,4 +177,20 @@ class UserDatabase {
       print(user);
     });
   }
+
+  Future<SignUpBody?> getUserById(int id) async {
+  final db = await database;
+  final maps = await db.query(
+    'user',
+    columns: ['id', 'name', 'phone', 'email', 'password', 'role'],
+    where: 'id = ?',
+    whereArgs: [id],
+  );
+
+  if (maps.isNotEmpty) {
+    return SignUpBody.fromMap(maps.first);
+  } else {
+    return null;
+  }
+}
 }

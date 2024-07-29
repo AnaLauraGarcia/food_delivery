@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery/pages/admin/cart_list_page.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/utils/dimensions.dart';
 import 'package:food_delivery/widgets/big_text.dart';
@@ -29,7 +30,8 @@ class _AdminPageState extends State<AdminPage> {
   List<Widget> _buildScreens() {
     return [
       _buildAdminScreen(), 
-      Container(), 
+
+      CartListPage(),
       UsersPage(),
       Container(), 
     ];

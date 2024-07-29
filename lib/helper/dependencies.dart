@@ -1,3 +1,4 @@
+import 'package:food_delivery/bbhh/preferences_service.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
@@ -13,19 +14,22 @@ Future<void> init() async {
   // Registra SharedPreferences primero
   Get.lazyPut(() => sharedPreferences);
 
+  // Registra PreferencesService
+  Get.lazyPut(() => PreferencesService());
+
   // Registra los repositorios
   Get.lazyPut(() => CartRepo(sharedPreferences: Get.find()));
   Get.lazyPut(() => PopularProductRepo());
   Get.lazyPut(() => RecommendedProductRepo());
 
-  // Obtén el userId antes de registrar el controlador
+  // Registra el controlador CartController con el userId
   final userId = await _getUserId(sharedPreferences);
-
-  // Registra los controladores con el userId
+  
   Get.lazyPut(() => CartController(
-    cartRepo: Get.find(), 
-    userId: userId
+    cartRepo: Get.find(),
+    userId: userId, // Pasa el userId aquí
   ));
+  
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(() => RecommendedProductController(recommendedProductRepo: Get.find()));
 }

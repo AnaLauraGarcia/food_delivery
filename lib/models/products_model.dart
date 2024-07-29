@@ -1,33 +1,3 @@
-class Product {
-  int? _totalSize;
-  int? _typeId;
-  int? _offset;
-  late List<ProductModel> _products;
-  List<ProductModel> get products=>_products;
-
-  Product({required totalSize, required typeId, required offset, required products}){
-    this._totalSize = totalSize;
-    this._typeId = typeId;
-    this._offset = offset;
-    this._products = products;
-  }
-
-  Product.fromJson(Map<String, dynamic> json){
-    _totalSize = json['total_size'];
-    _typeId = json['type_Id'];
-    _offset = json['offset'];
-    if(json['products'] != null){
-      _products = <ProductModel>[];
-      json['products'].forEach((v) {
-        _products.add(ProductModel.fromJson(v));
-      });
-        
-    }
-  }
-
-}
-
-
 class ProductModel {
   int? id;
   String? name;
@@ -40,8 +10,8 @@ class ProductModel {
   String? updatedAt;
   int? typeId;
 
-  ProductModel(
-    {this.id, 
+  ProductModel({
+    this.id, 
     this.name, 
     this.description, 
     this.price,
@@ -50,7 +20,8 @@ class ProductModel {
     this.location,
     this.createdAt,
     this.updatedAt,
-    this.typeId});
+    this.typeId
+  });
 
   ProductModel.fromJson(Map<String, dynamic> json){
     id = json['id'];
@@ -67,15 +38,40 @@ class ProductModel {
 
   Map<String, dynamic> toJson(){
     return {
-      "id":this.id,
-      "name":this.name,
-      "price":this.price,
-      "img":this.img,
+      "id": this.id,
+      "name": this.name,
+      "price": this.price,
+      "img": this.img,
       "location": this.location,
-      "createdAt":this.createdAt,
-      "updatedAt":this.updatedAt,
-      "typeId":this.typeId,
-
+      "createdAt": this.createdAt,
+      "updatedAt": this.updatedAt,
+      "typeId": this.typeId,
     };
+  }
+
+  ProductModel copyWith({
+    int? id,
+    String? name,
+    String? description,
+    int? price,
+    int? stars,
+    String? img,
+    String? location,
+    String? createdAt,
+    String? updatedAt,
+    int? typeId,
+  }) {
+    return ProductModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      price: price ?? this.price,
+      stars: stars ?? this.stars,
+      img: img ?? this.img,
+      location: location ?? this.location,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      typeId: typeId ?? this.typeId,
+    );
   }
 }
