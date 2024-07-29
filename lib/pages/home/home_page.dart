@@ -37,25 +37,7 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildScreens() {
     return [
       MainFoodPage(),
-      FutureBuilder<int?>(
-      future: _getUserId(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (snapshot.hasData) {
-          final userId = snapshot.data;
-          if (userId != null) {
-            return CartHistory(userId: userId); // Pasa el userId aquí
-          } else {
-            return Center(child: Text('No user ID found'));
-          }
-        } else {
-          return Center(child: Text('No user ID found'));
-        }
-      },
-    ),
+      CartHistory(),
     FutureBuilder<int?>(
       future: _getUserId(),
       builder: (context, snapshot) {
