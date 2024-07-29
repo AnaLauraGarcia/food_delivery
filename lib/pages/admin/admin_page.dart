@@ -28,8 +28,7 @@ class _AdminPageState extends State<AdminPage> {
 
   List<Widget> _buildScreens() {
     return [
-      _buildAdminScreen(), 
-      Container(), 
+      _buildAdminScreen(),  
       UsersPage(),
       Container(), 
     ];
@@ -43,12 +42,7 @@ class _AdminPageState extends State<AdminPage> {
         activeColorPrimary: CupertinoColors.systemGrey,
         inactiveColorPrimary: AppColors.mainColor,
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.archivebox_fill),
-        title: ("Pedidos"),
-        activeColorPrimary: CupertinoColors.systemGrey,
-        inactiveColorPrimary: AppColors.mainColor,
-      ),
+
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.person),
         title: ("Usuarios"),
